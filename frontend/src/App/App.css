@@ -2,14 +2,14 @@ h1 {
   text-align: center;
 }
 
-.addButton {
+.addBtn {
   text-align: center;
   margin: 30px;
 }
 
-/* .tableParent {
-  position: relative;
-} */
+.editBtn, .deleteBtn {
+  margin: 3px;
+}
 
 table {
   margin-left: auto;
@@ -23,6 +23,10 @@ table {
   border: 16px solid rgb(192, 184, 184);
   border-radius: 20px;
   align-self: center;
+}
+
+.buttons {
+  background-color: rgb(192, 184, 184);
 }
 
 th {
