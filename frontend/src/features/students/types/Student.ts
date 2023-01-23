@@ -4,3 +4,5 @@ export default interface Student {
     birthdate: string;
     score: number;
 }
+
+export type StudentId = Student['id'];

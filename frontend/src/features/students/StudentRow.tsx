@@ -14,9 +14,9 @@ export default function StudentRow({
     onEdit
 }: StudentRowProps): JSX.Element {
     const [edit, setEdit] = useState(false);
-    const [name, setName] = useState('');
-    const [birthdate, setBirthdate] = useState('');
-    const [score, setScore] = useState(0);
+    const [name, setName] = useState(student.name);
+    const [birthdate, setBirthdate] = useState(student.birthdate);
+    const [score, setScore] = useState(student.score);
 
     function toggleEdit(): void {
         if (edit) {
