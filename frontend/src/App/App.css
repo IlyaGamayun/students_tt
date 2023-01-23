@@ -9,6 +9,9 @@ h1 {
 
 .editBtn, .deleteBtn {
   margin: 3px;
+  border: none;
+  background-color: rgb(192, 184, 184);
+  font-size: 20px;
 }
 
 table {

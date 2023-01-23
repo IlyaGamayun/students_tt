@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useState } from 'react';
 import * as api from './api';
+import StudentRow from './StudentRow';
 import Student from './types/Student';
 
 export default function StudentsList(): JSX.Element {
@@ -10,7 +12,23 @@ export default function StudentsList(): JSX.Element {
 
 function handleSubmit(event: React.FormEvent): void {
   event.preventDefault();
+
+  setArrStudents((students) => {
+    const student: Student = {
+        id: students.length + 1,
+        name,
+        birthdate,
+        score: Number(score),
+    };
+
+    return [...students, student];
+  });
 }
+
+const handleEdit = (student: Student): void => {
+    setArrStudents((students) =>
+    students.map((newStudent) => newStudent.id === student.id ? student : newStudent));
+};
 
 function deleteStudent(student : Student): void {
         setArrStudents((students) => students.filter((s) => s !== student));
@@ -21,7 +39,7 @@ useEffect(() => {
     }, []);
 
     return (
-        <>
+<>
 <h1>Таблица выпускников</h1>
       <div className="addBtn">
         <form onSubmit={handleSubmit}>
@@ -40,7 +58,7 @@ useEffect(() => {
               value={score}
               onChange={(e) => setScore(e.target.value)}
               type="number"
-            />
+            />{' '}
             <button type="submit">Добавить студента</button>
         </form>
       </div>
@@ -52,18 +70,15 @@ useEffect(() => {
                     <th />
                 </tr>
                 {arrStudents.map((student) => (
-                <tr key={student.id}>
-                    <td>{student.name}</td>
-                    <td>{student.birthdate}</td>
-                    <td>{student.score}</td>
-                    <td className="buttons">
-                        <button className="editBtn">edit</button>
-                        <button onClick={() => deleteStudent(student)} className="deleteBtn">delete</button>
-                    </td>
-                </tr>
+                <StudentRow
+                  key={student.id}
+                  student={student}
+                  onDelete={deleteStudent}
+                  onEdit={handleEdit}
+                />
 )
                 )}
         </table>
-        </>
+</>
     );
 }
